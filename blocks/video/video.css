@@ -1,0 +1,44 @@
+.video {
+  display: block;  
+  position: relative;
+  margin: 30px auto 0px;
+  align-items: center;
+  border: 10px solid #636367;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 650px;
+  background-image: url(../../images/Postcard.jpg);
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 670px) {
+  .video {
+    background-size: 300%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .video {
+    background-size: 500%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .video {
+    max-height: 400px;
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .video {
+    max-height: 300px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .video {
+    max-height: 200px;
+  }
+}

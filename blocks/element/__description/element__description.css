@@ -1,0 +1,9 @@
+.element__description {
+  display: flex;
+  justify-content: space-around;
+  background: #292929;
+  font-size: 30px;
+  line-height: 50px;
+  color: #FFBB33;
+  font-weight: 900;
+}

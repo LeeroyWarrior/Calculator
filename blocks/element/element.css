@@ -1,0 +1,15 @@
+@import url(./__description/element__description.css);
+@import url(./__image/element__image.css);
+@import url(./__details/element__details.css);
+@import url(./__title/element__title.css);
+@import url(./__trash/element__trash.css);
+@import url(./__details/_active/element__details_active.css);
+@import url(./__total/element__total.css);
+@import url(./__info/element__info.css);
+.element {
+  display: grid;
+  max-width: 282px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #636367;
+}

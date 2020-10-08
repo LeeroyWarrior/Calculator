@@ -1,0 +1,25 @@
+.popup__form {
+  width: 358px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  color: azure;
+  outline: none;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 25px auto 0px;
+  padding-bottom: 5px;
+  background: #292929;
+}
+
+.popup__form_error {
+  border-bottom: 1px solid red;
+}
+    
+@media screen and (max-width: 580px) {
+  .popup__form {
+    max-width: 50vw;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

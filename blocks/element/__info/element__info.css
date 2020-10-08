@@ -1,0 +1,15 @@
+.element__info {
+    display: grid;
+    max-width: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 5px solid #636367;
+    background-color: black;
+  }
+
+@media screen and (max-width: 580px) {
+  .element__info {
+    width: 80%;
+    margin-top: 36px;
+  }
+}

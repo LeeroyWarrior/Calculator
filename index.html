@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='SHORTCUT ICON' href='./images/avaDPS.png' type='image/x-icon'>
+  <title>Sim PvP DPS</title>
+  <link rel='stylesheet' href='./pages/index.css'>
+</head>
+
+<body>
+  <div class='page'>
+      <header class='header'>
+          <img class='header__logo' src='./images/logo.png'>
+          <h1 class='header__text'>Leeroy PvP hub</h1>
+      </header>
+
+      <main class='main'>
+        <iframe class='video' width='650' height='365' src='https://www.youtube.com/embed/_YS8Qdgmxw0' frameborder='1' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
+        <section class='profile'>
+          <img class='profile__avatar' src='./images/avaDPS.png' alt='Аватарка'>
+          <div class='profile__info'>
+            <h1 class='profile__name'>PvP DPS Calculator</h1>
+            <a class='profile__raidbot' href='https://www.raidbots.com/simbot/quick' target='_blank'>RAIDBOT</a>
+          </div>
+          <button class='profile__add-button' type='button'><p class='profile__add-button_title'>PVP DAMAGE</p><p class='profile__add-button_text'>Calculate your pvp damage</p></button>
+        </section>
+        
+        <section class='elements'></section>
+      </main>
+
+      <footer class='footer'>
+        <p class='footer__author'>&#169;2020. Leeroy</p>
+      </footer>
+
+      <div class='popup popup_card'>
+        <form class='popup__content' id='popupFormCard' name='cardForm' novalidate>
+          
+          <h3 class='popup__title'>Calculator</h3>
+          <input class='popup__form' id='formCardName' type='text' name='cardName' placeholder='Name' required minlength='1' maxlength='20'>
+          <span class='error' id='err1'>Любое название</span>
+
+          <input class='popup__form' id='formCardDPS' type='number' name='cardDPS' placeholder='SimBot DPS' required minlength='1' maxlength='5'>
+          <span class='error' id='err2'>СимДПС должен быть в диапазоне 1-500000</span>
+
+          <input class='popup__form' id='formCardCrit' type='number' name='cardCrit' placeholder='Your critical chance %' required minlength='1' maxlength='5'>
+          <span class='error' id='err3'>Крит должен быть в диапазоне 5-100</span>
+          
+          <input class='popup__form' id='formCardVers' type='number' name='cardVers' placeholder='Your versatility %' required minlength='1' maxlength='5'>
+          <span class='error' id='err4'>Верса должена быть в диапазоне 0-100</span>
+
+          <select id='selWOWClass' class='popup__form_sclass'>
+
+            <option value='Воин'>Воин</option>
+            
+            <option value='Паладин'>Паладин</option>
+            
+            <option value='Рыцарь смерти'>Рыцарь смерти</option>
+            
+            <option value='Охотник'>Охотник</option>
+            
+            <option value='Шаман'>Шаман</option>
+            
+            <option value='Разбойник'>Разбойник</option>
+
+            <option value='Друид'>Друид</option>
+            
+            <option value='Монах'>Монах</option>
+            
+            <option value='Охотник на демонов'>Охотник на демонов</option>
+            
+            <option value='Маг'>Маг</option>
+            
+            <option value='Чернокнижник'>Чернокнижник</option>
+            
+            <option value='Жрец'>Жрец</option>
+            
+            </select>
+          <button class='popup__button' id='cardCreateButton' type='submit'>Calculate</button>
+        </form>
+      </div>
+
+      <div class='popup' id='test'>
+        <div class='element__info'>
+          <p class='element__total' id='total2'>123</p>
+          <p class='element__total_sub' id='total3'></p>
+          <p class='element__total_lose' id='total4'></p>
+          <p class='element__total_crit' id='total5'></p>
+          <p class='element__total_vers' id='total6'></p>
+          <p class='element__total_pvp' id='total8'></p>
+          <p class='element__total_how'>*pvp power = pvp dps + vers def effect</p>
+          <img class='element__image' id='test__image2' src='./images/Warrior.jpg' alt='изображение'>
+          <div class='element__description' id='total7'>
+            <h2 class='element__title'></h2>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  
+  <template id='template'>
+    <div class='element'>
+      <button class='element__trash' type='button'></button>
+      <p class='element__total' id='total'>123</p>
+      <p class='element__total_sub'>PvP Power</p>
+      <img class='element__image' src='./images/Warrior.jpg' alt='изображение'>
+      <div class='element__description'>
+        <h2 class='element__title'></h2>
+        <button class='element__details' type='button'></button>
+      </div>
+    </div>
+  </template>
+
+  <audio class='audio' id='audio' src='./images/02PONIMAU.ogg'></audio>
+  <audio class='audio' id='audio2' src='./images/open_sound.ogg'></audio>
+  <audio class='audio' id='audio3' src='./images/close_sound.ogg'></audio>
+  <audio class='audio' id='audio4' src='./images/WAh.ogg'></audio>
+
+  <script src='./pages/script.js'></script>
+  
+</body>
