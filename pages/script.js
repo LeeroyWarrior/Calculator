@@ -16,63 +16,63 @@ const test = document.querySelector('#test');
 const initialCards = [ //карточки из коробочки
   {
     name: 'Воин',
-    dps: 72952,
+    dps: 478,
     crit: 12,
-    vers: 40,
+    vers: 55,
     sclass: 'Воин'
   },
   {
     name: 'Охотница на демонов',
-    dps: 83948,
+    dps: 470,
     crit: 20,
-    vers: 40,
+    vers: 50,
     sclass: 'Охотник на демонов'
   },
   {
     name: 'ДК',
-    dps: 73367,
-    crit: 12,
+    dps: 475,
+    crit: 14,
     vers: 25,
     sclass: 'Рыцарь смерти'
   },
   {
     name: 'Шаман',
-    dps: 66759,
-    crit: 13,
-    vers: 25,
+    dps: 465,
+    crit: 30,
+    vers: 10,
     sclass: 'Шаман'
   },
   {
     name: 'Жрец',
-    dps: 67664,
-    crit: 14,
-    vers: 68,
+    dps: 480,
+    crit: 60,
+    vers: 10,
     sclass: 'Жрец'
   },
   {
     name: 'Охотник',
-    dps: 69825,
+    dps: 470,
     crit: 18,
     vers: 46,
     sclass: 'Охотник'
   },
   {
     name: 'Чернокнижник',
-    dps: 64252,
+    dps: 450,
     crit: 12,
     vers: 47,
     sclass: 'Чернокнижник'
   },
   {
     name: 'Паладин',
-    dps: 67657,
+    dps: 466,
     crit: 13,
     vers: 61,
     sclass: 'Паладин'
   },
   {
     name: 'Разбойник',
-    dps: 74758,
+    dps: 477,
     crit: 23,
     vers: 36,
     sclass: 'Разбойник'
@@ -102,13 +102,13 @@ function open(elem) {
 };
 
 function addPopupCloseListener(elem) {
-  document.addEventListener('keyup', escapeClose);
+  document.addEventListener('keydown', escapeClose);
   elem.addEventListener('click', popupEventHandler);
 } 
 
 function closePops(elem) {
   elem.classList.remove('popup_opened');
-  document.removeEventListener('keyup', escapeClose);
+  document.removeEventListener('keydown', escapeClose);
   elem.removeEventListener('click' , popupEventHandler);
   document.getElementById('audio3').play()
 };
@@ -136,14 +136,27 @@ function addElement(dps, name, crit, vers, sclass) {
   const cardImg = elementsItem.querySelector('.element__image');
   const cardTitle = elementsItem.querySelector('.element__title');
   const cardTotal = elementsItem.querySelector('#total');
-  const summ = Math.round(((+dps / 2) - ((+dps / 2)*((+crit / 2)/100))) + (((+dps / 2) - ((+dps / 2)*((+crit / 2)/100)))*((vers/2)/100)));        //Math.round((+dps / 2) + ((+dps / 2)*(((+vers / 2) - (+crit / 2))/100)));
-  const summpvp = Math.round((+dps / 2) - ((+dps / 2)*((+crit / 2)/100)));
-  const lose = Math.round(((+dps/2)*((+crit/2)/100)));
-  const totalImage = document.querySelector('#test__image2');
+  
+  let ilvl = dps; // илвл начинать менять тут в 4 местах!
+  if (dps >= 461) {
+    ilvl = 460;
+  }
+  else if (dps <=369 ) {
+    ilvl = 370
+  };
+  const summ = Math.round( ((+40000) - ((+40000)*((+crit / 4)/100))) * (1 - (((+461 - +ilvl)* +0.99) / +100)) * (+1 + ((+vers/2)/100)) );        // OLD not right Math.round(((+dps / 2) - ((+dps / 2)*((+crit / 2)/100))) + (((+dps / 2) - ((+dps / 2)*((+crit / 2)/100)))*((vers/2)/100))); 
+  const summpvp = Math.round(((+40000) - ((+40000)*((+crit / 4)/100))) * (1 - (((+461 - +ilvl)* +0.99) / +100)));              // OLD not right Math.round((+dps / 2) - ((+dps / 2)*((+crit / 2)/100))); 
+  const lose = Math.round(((+40000)*((+crit/4)/100)));
+
+  // (((+214 - +dps) - +23%) / +100)
+
+  const totalImage = document.querySelector('#test__image2');  //обычка 200 героик 213 шаблон дпс 3500-dps для SL а модификатор снижения илвл 0.77 вместо 0.99
 
   cardDelete.addEventListener('click', function(){
     document.getElementById('audio').play()
   });
+
+  
 
   cardImg.src = sclass;
   cardTitle.textContent = name;
@@ -189,14 +202,14 @@ function addElement(dps, name, crit, vers, sclass) {
   cardDetails.addEventListener('click', function () {
     document.getElementById('test').className = 'popup popup_opened';
     document.getElementById('audio2').play()
-    document.addEventListener('keyup', closeMyCard);
+    document.addEventListener('keydown', closeMyCard);
     test.addEventListener('click', function(){
       document.getElementById('test').className = 'popup';
       document.getElementById('audio3').play()
     });
     document.getElementById('total2').textContent = summ + ' - PvP Power';
     document.getElementById('total8').textContent = summpvp + ' - PvP DPS';
-    document.getElementById('total3').textContent = dps + ' - PvE DPS';
+    document.getElementById('total3').textContent = dps + ' - Item level';
     document.getElementById('total4').textContent = lose + ' - DPS lose by crit';
     document.getElementById('total5').textContent = crit + '% - Crit chance';
     document.getElementById('total6').textContent = vers + '% - Versatility';
@@ -206,7 +219,7 @@ function addElement(dps, name, crit, vers, sclass) {
       if (evt.key === 'Escape') {
         document.getElementById('test').className = 'popup';
         document.getElementById('audio3').play()
-        document.removeEventListener('keyup', closeMyCard);
+        document.removeEventListener('keydown', closeMyCard);
       }
     };
 
@@ -292,8 +305,8 @@ cardVers.addEventListener('input', function(){
   }
 });
 
-cardDPS.addEventListener('input', function(){
-  if (cardDPS.value > 500000){
+cardDPS.addEventListener('input', function(){ // ilvl менять тут!
+  if (cardDPS.value > 490){
     document.getElementById('err2').className = 'error error_visible';
   }
   else if(cardDPS.value < 1) {
@@ -304,8 +317,8 @@ cardDPS.addEventListener('input', function(){
   }
 });
 
-cardFormElement.addEventListener('input', function(evt) {
-  if (cardCrit.value > 100 || cardCrit.value < 5 || cardVers.value > 100 || cardVers.value < 0 || cardDPS.value > 500000 || cardDPS.value < 1 || cardVers.value === '' || cardName.value === '') {
+cardFormElement.addEventListener('input', function(evt) { // и тут!
+  if (cardCrit.value > 100 || cardCrit.value < 5 || cardVers.value > 100 || cardVers.value < 0 || cardDPS.value > 490 || cardDPS.value < 1 || cardVers.value === '' || cardName.value === '') {
     createButton.disabled = true;
     document.getElementById('cardCreateButton').className = 'popup__button popup__button_disabled';
     document.getElementById('cardCreateButton').textContent = 'Заполни поля';
